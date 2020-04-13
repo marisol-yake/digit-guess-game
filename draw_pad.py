@@ -7,24 +7,32 @@ import numpy as np
 def main():
     pygame.init()
 
+    screen_width, screen_height = 64, 64
+    scaling_factor = 10
     white = (255, 255, 255)
     black = (0, 0, 0)
     drascreeng = False
     running = True
 
     # This sets up the user-facing pygame display
-    win = pygame.display.set_mode((640, 640)) #
+    win = pygame.display.set_mode((screen_width*scaling_factor,
+                                   screen_height*scaling_factor))
     screen = pygame.Surface((64,64))
-    # screen = pygame.display.set_mode((640, 640))
-    # screen = pygame.Surface((64, 64))
-    # screen = pygame.Surface(size=(8, 8))
     pygame.display.set_caption('0 Thru 9: a guessing machine')
-    screen.fill(white)
-    # clock = pygame.time.Clock()
 
+    def init_tablet(win,screen, blank=False):
+        if blank:
+            screen.fill(white)
+            win.fill(white)
+        pygame.draw.line(win, black, (65,0), (65,65), 1)
+        pygame.draw.line(win, black, (0,65), (65,65), 1)
+        pygame.display.update()
+
+    init_tablet(win,screen, blank=True)
     while running:
         # Checks for quit events
         pygame.time.delay(30)
+        init_tablet(win,screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -37,21 +45,14 @@ def main():
 
                 # Resets screen if R-key is pressed
                 elif event.key == pygame.K_r:
-                    screen.fill(white)
-
-                    screen.fill(white)
-                    pygame.display.update()
+                    init_tablet(win,screen, blank=True)
 
             elif event.type == pygame.MOUSEMOTION:
                 if event.buttons[0]:
                     last = (event.pos[0] - event.rel[0], event.pos[1] - event.rel[1])
                     pygame.draw.line(screen, black, last, event.pos, 3)
-
-            pygame.draw.rect(screen, black, (2,2,10,10))
-            win.blit(pygame.transform.scale(screen, win.get_rect().size), (0, 0)) #
-            pygame.display.update()
-            # clock.tick(30)
-
+                    pygame.display.update()
+                    win.blit(pygame.transform.scale(screen, win.get_rect().size), (0, 0))
 
 if __name__ == '__main__':
     main()
