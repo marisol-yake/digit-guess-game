@@ -17,15 +17,15 @@ def main():
     # This sets up the user-facing pygame display
     win = pygame.display.set_mode((screen_width*scaling_factor,
                                    screen_height*scaling_factor))
-    screen = pygame.Surface((64,64))
+    screen = pygame.Surface((screen_width,screen_height))
     pygame.display.set_caption('0 Thru 9: a guessing machine')
 
     def init_tablet(win,screen, blank=False):
         if blank:
             screen.fill(white)
             win.fill(white)
-        pygame.draw.line(win, black, (65,0), (65,65), 1)
-        pygame.draw.line(win, black, (0,65), (65,65), 1)
+        pygame.draw.line(win, black, (screen_width+1,0), (screen_width+1,screen_height+1), 1)
+        pygame.draw.line(win, black, (0,screen_height+1), (screen_width+1,screen_height+1), 1)
         pygame.display.update()
 
     init_tablet(win,screen, blank=True)
