@@ -13,14 +13,18 @@ def main():
     running = True
 
     # This sets up the user-facing pygame display
-    screen = pygame.display.set_mode((640, 800))
+    win = pygame.display.set_mode((640, 640)) #
+    screen = pygame.Surface((64,64))
+    # screen = pygame.display.set_mode((640, 640))
+    # screen = pygame.Surface((64, 64))
     # screen = pygame.Surface(size=(8, 8))
     pygame.display.set_caption('0 Thru 9: a guessing machine')
     screen.fill(white)
-    clock = pygame.time.Clock()
+    # clock = pygame.time.Clock()
 
     while running:
         # Checks for quit events
+        pygame.time.delay(30)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -42,8 +46,11 @@ def main():
                 if event.buttons[0]:
                     last = (event.pos[0] - event.rel[0], event.pos[1] - event.rel[1])
                     pygame.draw.line(screen, black, last, event.pos, 3)
+
+            pygame.draw.rect(screen, black, (2,2,10,10))
+            win.blit(pygame.transform.scale(screen, win.get_rect().size), (0, 0)) #
             pygame.display.update()
-            clock.tick(30)
+            # clock.tick(30)
 
 
 if __name__ == '__main__':
