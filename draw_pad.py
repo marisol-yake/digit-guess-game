@@ -9,14 +9,14 @@ def main():
 
     white = (255, 255, 255)
     black = (0, 0, 0)
-    drawing = False
+    drascreeng = False
     running = True
 
     # This sets up the user-facing pygame display
-    window = pygame.display.set_mode((640, 800))
-    screen = pygame.Surface(size=(8, 8))
+    screen = pygame.display.set_mode((640, 800))
+    # screen = pygame.Surface(size=(8, 8))
     pygame.display.set_caption('0 Thru 9: a guessing machine')
-    window.fill(white)
+    screen.fill(white)
     clock = pygame.time.Clock()
 
     while running:
@@ -33,7 +33,7 @@ def main():
 
                 # Resets screen if R-key is pressed
                 elif event.key == pygame.K_r:
-                    window.fill(white)
+                    screen.fill(white)
 
                     screen.fill(white)
                     pygame.display.update()
