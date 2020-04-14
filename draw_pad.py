@@ -45,8 +45,8 @@ def main():
             elif event.type == pygame.MOUSEMOTION:
                 if event.buttons[0]:
                     line_size = 3
-                    x = min(X,key=lambda x:abs(x-(event.pos[0]-scaling_factor*0.5)))
-                    y = min(Y,key=lambda x:abs(x-(event.pos[1]-scaling_factor*0.5)))
+                    x = min(X,key=lambda x:abs(x-(event.pos[0]-scaling_factor*0.5*line_size)))
+                    y = min(Y,key=lambda x:abs(x-(event.pos[1]-scaling_factor*0.5*line_size)))
                     pygame.draw.rect(screen, black, (x,y,line_size*scaling_factor,line_size*scaling_factor))
             pygame.display.update()
 
