@@ -6,9 +6,6 @@ import numpy as np
 # Main game loop
 def main():
     pygame.init()
-
-    screen_width, screen_height = 64, 64
-    scaling_factor = 10
     white = (255, 255, 255)
     black = (0, 0, 0)
     drascreeng = False
@@ -22,7 +19,6 @@ def main():
     screen = pygame.display.set_mode((pixels_width*scaling_factor, pixels_width*scaling_factor))
     pygame.display.set_caption('0 Thru 9: a guessing machine')
     screen.fill(white)
-    clock = pygame.time.Clock()
 
     while running:
         # Checks for quit events
