@@ -2,7 +2,6 @@ import pygame, pygame.locals
 import numpy as np
 
 
-
 # Main game loop
 def main():
     pygame.init()
@@ -39,7 +38,7 @@ def main():
 
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    num_image = pygame.surfarray.array2d(screen)
+                    num_image = pygame.surfarray.pixels2d(win)
                     print(num_image)
                     print(num_image.shape)
 
@@ -51,8 +50,9 @@ def main():
                 if event.buttons[0]:
                     last = (event.pos[0] - event.rel[0], event.pos[1] - event.rel[1])
                     pygame.draw.line(screen, black, last, event.pos, 3)
-                    pygame.display.update()
+                    # pygame.display.update()
                     win.blit(pygame.transform.scale(screen, win.get_rect().size), (0, 0))
+
 
 if __name__ == '__main__':
     main()
